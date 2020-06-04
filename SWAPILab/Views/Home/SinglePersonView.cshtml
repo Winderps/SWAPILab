@@ -1,0 +1,20 @@
+@model People
+
+<p>
+    Name: @Model.Name<br/>
+    Birth Year: : @Model.BirthYear<br/>
+    Eye Color: @Model.EyeColor<br/>
+    Gender: @Model.Gender<br/>
+    Hair Color: @Model.HairColor<br/>
+    Height: @Model.Height<br/>
+    Mass: @Model.Mass<br/>
+    Skin Color: @Model.SkinColor<br/>
+    Homeworld: <a href="@($"/Home/GetPlanetById?selectedPlanet={@Model.Homeworld.Split('/')[^2]}")">Click Me To View</a><br/>
+    <div>@Html.Raw(Utilities.CreateCollapse("Films", Model.Name, Model.Films, true))</div>
+    <div>@Html.Raw(Utilities.CreateCollapse("Species", Model.Name, Model.Species, true))</div>
+    <div>@Html.Raw(Utilities.CreateCollapse("Vehicles", Model.Name, Model.Vehicles, true))</div>
+    <div>@Html.Raw(Utilities.CreateCollapse("Starships", Model.Name, Model.StarShips, true))</div>
+    Entry Created: @Model.Created.ToString("f")<br/>
+    Entry Modified @Model.Edited.ToString("f")<br/>
+    Link to JSON: <a href="@Model.Url">Click Me</a><br/>
+</p>

@@ -1,0 +1,8 @@
+@model List<People>
+@foreach (People p in Model)
+{
+    <form action="/Home/GetPersonById" method="get">
+        <input type="hidden" name="selectedPerson" value="@p.Url.Split('/')[^2]"/>
+        <input type="submit" value="View @(p.Name + (p.Name.EndsWith("s") ? "\'" : "\'s")) page" style="margin: .25em"/>
+    </form>
+}

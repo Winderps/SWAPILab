@@ -1,0 +1,18 @@
+@model Planet
+
+<p>
+    Name: @Model.Name<br/>
+    Diameter: @Model.Diameter<br/>
+    Eye Color: @Model.RotationPeriod<br/>
+    Gender: @Model.OrbitalPeriod<br/>
+    Hair Color: @Model.Gravity<br/>
+    Height: @Model.Population<br/>
+    Mass: @Model.Climate<br/>
+    Skin Color: @Model.Terrain<br/>
+    Gender: @Model.SurfaceWater<br/>
+    <div>@Html.Raw(Utilities.CreateCollapse("Residents", Model.Name, Model.Residents, true))</div>
+    <div>@Html.Raw(Utilities.CreateCollapse("Films", Model.Name, Model.Films, true))</div>
+    Entry Created: @Model.Created.ToString("f")<br/>
+    Entry Modified @Model.Edited.ToString("f")<br/>
+    Link to JSON: <a href="@Model.Url">Click Me</a><br/>
+</p>

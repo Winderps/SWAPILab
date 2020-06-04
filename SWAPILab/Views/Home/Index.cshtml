@@ -1,0 +1,35 @@
+﻿@{
+    List<People> people = (await Utilities.GetApiResponse<ListRootObject<People>>("api", "people", "https://swapi.dev")).First().Results.ToList();
+    List<Planet> planets = (await Utilities.GetApiResponse<ListRootObject<Planet>>("api", "planets", "https://swapi.dev")).First().Results.ToList();
+    <h4>Select an Object to View</h4><hr/>
+    <form action="/Home/GetPersonById" method="get" style="margin: .25em">
+        Select Person: <select name="selectedPerson" style="margin: .25em">
+            @foreach (People p in people)
+            {
+                string[] splitUrl = p.Url.Split("/");
+                <option value="@splitUrl[^2]">@p.Name</option>
+            }
+        </select>
+        <input type="submit" value="Select" style="margin: .25em"/>
+    </form>
+    <form action="/Home/GetPlanetById" method="get" style="margin: .25em">
+        Select Planet: <select name="selectedPlanet" style="margin: .25em">
+            @foreach (Planet p in planets)
+            {
+                string[] splitUrl = p.Url.Split("/");
+                <option value="@splitUrl[^2]">@p.Name</option>
+            }
+        </select>
+        <input type="submit" value="Select" style="margin: .25em"/>
+    </form>
+    <br/>
+    <h4>Or search by name</h4><hr/>
+    <form action="/Home/GetPersonByName" method="get" style="margin: .25em">
+        <input type="text" name="searchQuery" placeholder="Search People..." style="margin: .25em"/>
+        <input type="submit" value="Go!" style="margin: .25em"/>
+    </form>
+    <form action="/Home/GetPlanetByName" method="get" style="margin: .25em">
+        <input type="text" name="searchQuery" placeholder="Search Planets..." style="margin: .25em"/>
+        <input type="submit" value="Go!" style="margin: .25em"/>
+    </form>
+}
